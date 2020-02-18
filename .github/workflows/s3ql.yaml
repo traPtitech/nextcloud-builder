@@ -21,9 +21,9 @@ jobs:
       - name: Set IMAGE_TAG env (on tag)
         run: echo ::set-env name=IMAGE_TAG::$(echo ${GITHUB_REF:11})
         if: startsWith(github.ref, 'refs/tags')
+      - uses: actions/checkout@v2
       - name: Set S3QL_VERSION env
         run: echo ::set-env name=S3QL_VERSION::$(cat ./s3ql/version)
-      - uses: actions/checkout@v2
       - name: Login GitHub Registry
         run: docker login docker.pkg.github.com -u traPtitech -p ${{ secrets.GITHUB_TOKEN }}
       - name: Build Image
