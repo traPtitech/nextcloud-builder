@@ -1,4 +1,4 @@
-FROM php:alpine AS builder
+FROM php:alpine AS build
 
 RUN apk add --no-cache libzip-dev gmp-dev git \
     && docker-php-ext-install zip gmp
