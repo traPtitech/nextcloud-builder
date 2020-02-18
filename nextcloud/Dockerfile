@@ -4,7 +4,7 @@ RUN apk add --no-cache libzip-dev gmp-dev git \
     && docker-php-ext-install zip gmp
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN git clone git@github.com:traPtitech/nc-trapauth.git /nc-trapauth
+RUN git clone git@github.com:traPtitech/nc-trapauth.git /
 
 WORKDIR /nc-trapauth
 RUN composer install
