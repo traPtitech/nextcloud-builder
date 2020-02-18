@@ -22,9 +22,6 @@ FROM python:3.7-alpine
 RUN apk --no-cache add fuse psmisc
 COPY --from=build /root/.local/bin/ /usr/local/bin/
 COPY --from=build /root/.local/lib/ /usr/local/lib/
-COPY ./entrypoint.sh  /usr/local/bin/
-COPY ./authinfo2 /root/.s3ql/
-RUN chmod 755 /usr/local/bin/*.sh
 ENV MOUNTPOINT /cloud
 ENV S3QL_ROOT /root/.s3ql
 ENTRYPOINT ["/bin/sh","/usr/local/bin/entrypoint.sh"]
