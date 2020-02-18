@@ -1,7 +1,6 @@
-ARG NEXTCLOUD_VERSION
 FROM php:alpine AS builder
 
-RUN apk add --no-cache libzip-dev gmp-dev \
+RUN apk add --no-cache libzip-dev gmp-dev git \
     && docker-php-ext-install zip gmp
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
