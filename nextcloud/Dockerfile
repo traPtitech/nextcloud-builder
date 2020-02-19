@@ -11,4 +11,4 @@ RUN composer install
 
 FROM nextcloud:fpm
 
-COPY --from=build /nc-trapauth /var/www/html/apps/nc-trapauth
+COPY --from=build /nc-trapauth /usr/src/nextcloud/apps/nc-trapauth
