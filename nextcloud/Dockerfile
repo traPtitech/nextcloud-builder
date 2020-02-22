@@ -9,6 +9,6 @@ RUN git clone https://github.com/traPtitech/nc-trapauth.git /nc-trapauth
 WORKDIR /nc-trapauth
 RUN composer install
 
-FROM nextcloud:16.0.3-fpm
+FROM nextcloud:17-fpm
 
 COPY --from=build /nc-trapauth /usr/src/nextcloud/apps/nc-trapauth
