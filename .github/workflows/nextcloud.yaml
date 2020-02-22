@@ -22,9 +22,11 @@ jobs:
         run: echo ::set-env name=IMAGE_TAG::$(echo ${GITHUB_REF:11})
         if: startsWith(github.ref, 'refs/tags')
       - uses: actions/checkout@v2
+      - name: Set NEXTCLOUD_VERSION env
+        run: echo ::set-env name=NEXTCLOUD_VERSION::$(cat ./nextcloud/version)
       - name: Login GitHub Registry
         run: docker login docker.pkg.github.com -u traPtitech -p ${{ secrets.GITHUB_TOKEN }}
       - name: Build Image
-        run: docker build -t docker.pkg.github.com/traptitech/nextcloud-builder/${IMAGE_NAME}:${IMAGE_TAG} ./nextcloud
+        run: docker build --build-arg NEXTCLOUD_VERSION=${NEXTCLOUD_VERSION} -t docker.pkg.github.com/traptitech/nextcloud-builder/${IMAGE_NAME}:${IMAGE_TAG} ./nextcloud
       - name: Push image to GitHub Registry
         run: docker push docker.pkg.github.com/traptitech/nextcloud-builder/${IMAGE_NAME}:${IMAGE_TAG}
