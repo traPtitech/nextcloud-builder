@@ -23,7 +23,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags')
       - uses: actions/checkout@v2
       - name: Set NEXTCLOUD_VERSION env
-        run: echo ::set-env name=NEXTCLOUD_VERSION::$(cat ./nextcloud/version)
+        run: echo "NEXTCLOUD_VERSION=$(cat ./nextcloud/version)" >> $GITHUB_ENV
       - name: Login GitHub Registry
         run: docker login docker.pkg.github.com -u traPtitech -p ${{ secrets.GITHUB_TOKEN }}
       - name: Build Image
