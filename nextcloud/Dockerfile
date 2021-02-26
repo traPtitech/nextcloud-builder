@@ -1,5 +1,6 @@
 ARG NEXTCLOUD_VERSION
-FROM php:${PHP_VERSION}alpine AS build
+ARG PHP_VERSION
+FROM php:${PHP_VERSION}-alpine AS build
 
 RUN apk add --no-cache libzip-dev gmp-dev git \
     && docker-php-ext-install zip gmp
