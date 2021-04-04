@@ -20,5 +20,3 @@ FROM nextcloud:${NEXTCLOUD_VERSION}-fpm
 
 COPY --from=build /nc-trapauth /usr/src/nextcloud/apps/nc-trapauth
 COPY --from=build /traq_avatar /usr/src/nextcloud/apps/traq_avatar
-
-COPY config/* /usr/src/nextcloud/config/
