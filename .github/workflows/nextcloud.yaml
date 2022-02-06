@@ -42,7 +42,7 @@ jobs:
           push: true
           platforms: linux/amd64
           build-args: |
-            NEXTCLOUD_VERSION=${{ env.NEXTCLOUD_VERSION }}
+            NEXTCLOUD_VERSION=${{ env.NEXTCLOUD_VERSION }}-fpm
             PHP_VERSION=${{ env.PHP_VERSION }}
           tags: |
             ghcr.io/traptitech/${{ env.IMAGE_NAME }}:latest

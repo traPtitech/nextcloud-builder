@@ -1,0 +1,13 @@
+version: "3"
+services:
+  app:
+    build:
+      context: ./nextcloud
+      args:
+        NEXTCLOUD_VERSION: ${NEXTCLOUD_VERSION}
+        PHP_VERSION: ${PHP_VERSION}
+    restart: unless-stopped
+    environment:
+      SQLITE_DATABASE: sqlite
+    ports:
+      - '3000:80'
