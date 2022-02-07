@@ -24,5 +24,5 @@ COPY --from=build /traq_avatar /usr/src/nextcloud/custom_apps/traq_avatar
 COPY config/* /usr/src/nextcloud/config/
 
 COPY entrypoint_post.sh /entrypoint_post.sh
-# 「exec "$@"」の前に「/entrypoint_post.sh」を挿入する
-RUN sed -i -e '/^exec "\$@"/i /entrypoint_post.sh' /entrypoint.sh
+# 「exec "$@"」の前に「sh /entrypoint_post.sh」を挿入する
+RUN sed -i -e '/^exec "\$@"/i sh /entrypoint_post.sh' /entrypoint.sh
