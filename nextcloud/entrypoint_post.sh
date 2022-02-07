@@ -15,9 +15,9 @@ else
 fi
 
 # https://github.com/nextcloud/docker/blob/dcf058fb559e7918cd77f5f1bb0dfdbcee813571/23/fpm/entrypoint.sh#L106-L110
-for dir in config custom_apps themes; do
+for dir in custom_apps; do
     if [ ! -d "/var/www/html/$dir" ] || directory_empty "/var/www/html/$dir"; then
         rsync $rsync_options --include "/$dir/" --exclude '/*' /usr/src/nextcloud/ /var/www/html/
     fi
 done
-echo Copied config, custom_apps, themes
+echo Copied custom_apps
