@@ -23,6 +23,7 @@ COPY --from=build /traq_avatar /usr/src/nextcloud/custom_apps/traq_avatar
 
 COPY config/* /usr/src/nextcloud/config/
 
-COPY entrypoint_post.sh /entrypoint_post.sh
-# 「exec "$@"」の前に「sh /entrypoint_post.sh」を挿入する
-RUN sed -i -e '/^exec "\$@"/i sh /entrypoint_post.sh' /entrypoint.sh
+COPY entrypoint_post.sh fix-snowflake.sh /
+# Sync custom apps before starting the service.
+RUN sh /fix-snowflake.sh \
+    && sed -i -e '/^exec "\$@"/i sh /entrypoint_post.sh' /entrypoint.sh
